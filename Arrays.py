@@ -43,7 +43,42 @@ def Pal(s):
 
 
 #1.5 - One Way
-#def oneway(a, b):
+def oneway(s1, s2):
+    l1 = len(s1)
+    l2 = len(s2)
+
+    if abs(l1-l2)>1:
+        return False
+    
+    m = 0
+    n = 0
+
+    count = 0
+
+    while m<l1 and n<l2:
+
+        if s1[m]!=s2[n]:
+            if count==1:
+                return False
+
+            if m>n:
+                n += 1
+            elif m<n:
+                m += 1
+            else:
+                m += 1
+                n += 1
+            
+            count += 1
+
+        else:
+            m += 1
+            n += 1
+        
+    if m<l1 or n<l2:
+        count += 1
+    
+    return count == 1
 
 #1.6 - String Compression
 def strcomp(s):
@@ -79,6 +114,29 @@ def rot(matrix):
     return matrix
 
 #1.8 - Zero Matrix
+def zermat(matrix):
+
+    A = len(matrix)
+    B = len(matrix[0])
+
+    row = set()
+    col = set()
+
+    for i in range(A):
+        for j in range(B):
+
+            if matrix[i][j]==0:
+                row.add(i)
+                col.add(j)
+    
+    for i in range(A):
+        for j in range(B):
+
+            if i in row or j in col:
+                matrix[i][j]=0
+    
+    return matrix
+    
 
 
 #1.9 - String Rotation
